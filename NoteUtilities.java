@@ -48,4 +48,25 @@ public class NoteUtilities {
         addNote();
         displayNotes();
     }
+
+    public static void deleteNote(int numNote){
+        // Remember to take into account that the note they type in is one higher than its index
+        // Example:  User types in "1", but that note is stored at index 0.
+        numNote--;
+
+        // Check to make sure that a valid selection was made
+        if(numNote < 0 || numNote > lastNote){
+            // If not valid allow a retry
+            System.out.println("I'm sorry, but you have made an invalid selection.");
+            System.out.println("Please try again.");
+        }else{
+            // For valid selections
+            for(int currentNote = numNote; currentNote < lastNote ; currentNote++){
+                noteList[currentNote] = noteList[currentNote + 1];
+            }
+            noteList[lastNote] = "";
+            lastNote--;
+            System.out.println("Note deleted.");
+        }
+    }
 }
